@@ -6,8 +6,11 @@ spring:
     name: service-edu
   profiles:
     active: dev
+  mvc:
+    date-format: yyyy-MM-dd HH:mm:ss            # springmvc对日期字符串的自动转换格式
   jackson:
-    date-format: yyyy-MM-dd HH:mm:ss
+    date-format: yyyy-MM-dd HH:mm:ss            # 响应结果日期格式转换
+    time-zone: GMT+8
 
 mybatis-plus:
   configuration:

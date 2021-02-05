@@ -17,6 +17,7 @@
 
     <modules>
         <module>service</module>
+        <module>common</module>
     </modules>
 
     <properties>
@@ -186,6 +187,18 @@
                 <groupId>com.alibaba.otter</groupId>
                 <artifactId>canal.client</artifactId>
                 <version>${canal.client.version}</version>
+            </dependency>
+            <!--项目组件-->
+            <dependency>
+                <groupId>com.atguigu</groupId>
+                <artifactId>service-base</artifactId>
+                <version>${guli.version}</version>
+            </dependency>
+            <!--工具组件-->
+            <dependency>
+                <groupId>com.atguigu</groupId>
+                <artifactId>common-utils</artifactId>
+                <version>${guli.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
