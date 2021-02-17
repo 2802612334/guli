@@ -13,7 +13,7 @@ public class Result {
     private Boolean success;
 
     @ApiModelProperty(value = "返回码")
-    private ResultCode code;
+    private Integer code;
 
     @ApiModelProperty(value = "返回消息")
     private String message;
@@ -37,11 +37,11 @@ public class Result {
         Result result = new Result();
         result.setSuccess(false);
         result.setMessage("失败");
-        result.setCode(ResultCode.FEILED);
+        result.setCode(ResultCode.FEILID);
         return result;
     }
 
-    public Result code(ResultCode code){
+    public Result code(Integer code){
         this.setCode(code);
         return this;
     }

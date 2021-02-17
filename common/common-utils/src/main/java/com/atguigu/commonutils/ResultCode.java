@@ -1,14 +1,13 @@
 package com.atguigu.commonutils;
 
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-@AllArgsConstructor
-public enum ResultCode {
+public class ResultCode {
 
-    SUCCESS(20000),
-    FEILED(20001);
+//    SUCCESS(20000),
+//    FEILED(20001);
 
-    private Integer code;
+    public static final Integer SUCCESS = 20000;
+    public static final Integer FEILID = 20001;
 }

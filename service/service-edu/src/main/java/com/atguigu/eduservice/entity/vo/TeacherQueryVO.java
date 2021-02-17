@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @ApiModel(value = "Teacher模糊查询对象",description = "讲师对象封装")
 @Data
@@ -21,8 +22,8 @@ public class TeacherQueryVO implements Serializable {
     private Integer level;
 
     @ApiModelProperty(value = "查询开始时间",example = "2019-01-01 10:10:10")
-    private String begin;
+    private Date begin;
 
     @ApiModelProperty(value = "查询结束时间",example = "2019-01-01 10:10:10")
-    private String end;
+    private Date end;
 }
