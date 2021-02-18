@@ -31,6 +31,7 @@ public class EduTeacherServiceImpl extends ServiceImpl<EduTeacherMapper, EduTeac
         // 1.封装查询条件
         QueryWrapper<EduTeacher> queryWrapper = new QueryWrapper<>();
 
+        queryWrapper.orderByDesc("gmt_create");
         queryWrapper.orderByAsc("sort");
 
         if(teacherQueryVO == null){
@@ -51,7 +52,7 @@ public class EduTeacherServiceImpl extends ServiceImpl<EduTeacherMapper, EduTeac
         }
 
         if(begin != null){
-            queryWrapper.lt("gmt_create",begin);
+            queryWrapper.ge("gmt_create",begin);
         }
 
         if(end != null){

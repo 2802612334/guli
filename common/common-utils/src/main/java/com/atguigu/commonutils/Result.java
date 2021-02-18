@@ -10,7 +10,7 @@ import java.util.Map;
 public class Result {
 
     @ApiModelProperty(value = "请求是否成功")
-    private Boolean success;
+    private Boolean flag;
 
     @ApiModelProperty(value = "返回码")
     private Integer code;
@@ -27,7 +27,7 @@ public class Result {
     // 链式编程
     public static Result ok(){
         Result result = new Result();
-        result.setSuccess(true);
+        result.setFlag(true);
         result.setMessage("成功");
         result.setCode(ResultCode.SUCCESS);
         return result;
@@ -35,7 +35,7 @@ public class Result {
 
     public static Result error(){
         Result result = new Result();
-        result.setSuccess(false);
+        result.setFlag(false);
         result.setMessage("失败");
         result.setCode(ResultCode.FEILID);
         return result;

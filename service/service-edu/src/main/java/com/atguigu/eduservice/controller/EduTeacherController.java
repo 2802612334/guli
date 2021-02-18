@@ -83,13 +83,13 @@ public class EduTeacherController {
     public Result pageQuery(
             @ApiParam(name = "page",value = "当前页码",required = true) @PathVariable("page") Integer page,
             @ApiParam(name = "limit",value = "每页记录数",required = true) @PathVariable("limit") Integer limit,
-            @ApiParam(name = "teacherQuery",value = "查询条件",required = false) @RequestBody(required = false) TeacherQueryVO teacherQueryVO
+            @ApiParam(name = "teacherQuery",value = "查询条件",required = false) @RequestBody(required = false) TeacherQueryVO teacherQuery
     ){
         // 1.封装页面对象
         Page<EduTeacher> pageParam = new Page<>(page,limit);
 
         // 2.调用业务方法
-        IPage<EduTeacher> info = eduTeacherService.pageQuery(pageParam, teacherQueryVO);
+        IPage<EduTeacher> info = eduTeacherService.pageQuery(pageParam, teacherQuery);
 
         // 3.封装结果并返回
         Result result = Result.ok();
