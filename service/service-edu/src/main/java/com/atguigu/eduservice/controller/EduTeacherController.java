@@ -62,7 +62,7 @@ public class EduTeacherController {
     @PutMapping("{id}")
     public Result updateById(
             @ApiParam(name = "id",value = "讲师ID",required = true) @PathVariable("id") String id,
-            @ApiParam(name = "eduTeacher",value = "修改讲师信息",required = true) EduTeacher eduTeacher
+            @ApiParam(name = "eduTeacher",value = "修改讲师信息",required = true) @RequestBody(required = true) EduTeacher eduTeacher
     ){
         eduTeacher.setId(id);
         eduTeacherService.updateById(eduTeacher);
