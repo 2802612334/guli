@@ -8,7 +8,7 @@ spring:
 aliyun:
   oss:
     file:
-      endopint: endopint
-      keyid: keyid
-      keysecret: keysecret
-      bucketname: bucketname
+      endopint: oss-cn-beijing.aliyuncs.com
+      keyid: LTAI4G4XCkNTyRgPVR4QEdjT
+      keysecret: 7nEi2YoeXQHcVQV2KRQkLSYxc9iIo6
+      bucketname: guliedu-szf
