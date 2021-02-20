@@ -31,7 +31,7 @@ public class OssController {
     @PostMapping("/avatar")
     public Result uploadFileAvatar(@ApiParam("讲师头像") MultipartFile file){
         String path = ossService.uploadFileAvatar(file);
-        return Result.ok().data("path",path);
+        return Result.ok().data("url",path);
     }
 
 }
