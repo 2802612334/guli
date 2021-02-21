@@ -2,7 +2,7 @@ package com.atguigu.eduservice.controller;
 
 
 import com.atguigu.commonutils.Result;
-import com.atguigu.eduservice.entity.EduTeacher;
+import com.atguigu.eduservice.entity.po.EduTeacher;
 import com.atguigu.eduservice.entity.vo.TeacherQueryVO;
 import com.atguigu.eduservice.service.EduTeacherService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
