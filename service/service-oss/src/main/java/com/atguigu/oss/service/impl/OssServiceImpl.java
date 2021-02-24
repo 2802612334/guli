@@ -21,7 +21,7 @@ public class OssServiceImpl implements OssService {
     private OssProperties ossProperties;
 
     @Override
-    public String uploadFileAvatar(MultipartFile file) {
+    public String uploadFile(MultipartFile file) {
         OSS ossClient = new OSSClientBuilder().build(OssProperties.ENDOPINT,OssProperties.KEYID , OssProperties.KEYSECRET);;
         String path = null;
         String url = null;

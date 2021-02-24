@@ -30,7 +30,14 @@ public class OssController {
     @ApiOperation("讲师头像上传")
     @PostMapping("/avatar")
     public Result uploadFileAvatar(@ApiParam("讲师头像") MultipartFile file){
-        String url = ossService.uploadFileAvatar(file);
+        String url = ossService.uploadFile(file);
+        return Result.ok().data("url",url);
+    }
+
+    @ApiOperation("课程封面上传")
+    @PostMapping("/cover")
+    public Result uploadFileCover(@ApiParam("课程封面") MultipartFile file){
+        String url = ossService.uploadFile(file);
         return Result.ok().data("url",url);
     }
 

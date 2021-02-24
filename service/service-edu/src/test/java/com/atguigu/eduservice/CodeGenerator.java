@@ -59,7 +59,7 @@ public class CodeGenerator {
 
         // 5.策略配置
         StrategyConfig strategy = new StrategyConfig();
-        strategy.setInclude("edu_subject");
+        strategy.setInclude("edu_chapter","edu_course","edu_course_description","edu_video");
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         strategy.setEntityLombokModel(true);
