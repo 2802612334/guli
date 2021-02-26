@@ -7,15 +7,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-@ApiModel(value = "课程列表二级对象")
+@ApiModel(value = "章节对象")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TwoSubject implements Serializable {
-    @ApiModelProperty("二级分类id")
+public class ChapterVO implements Serializable {
+
+    @ApiModelProperty("章节id")
     private String id;
 
-    @ApiModelProperty("二级分类名")
+    @ApiModelProperty("章节名称")
     private String title;
+
+    @ApiModelProperty("小结信息")
+    private List<VideoVO> children = new ArrayList<>();
 }

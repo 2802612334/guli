@@ -6,13 +6,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 @ApiModel(value = "课程信息上传对象",description = "课程信息对象封装")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CourseInfoVO {
+public class CourseInfoVO implements Serializable {
     @ApiModelProperty(value = "课程ID")
     private String id;
 
