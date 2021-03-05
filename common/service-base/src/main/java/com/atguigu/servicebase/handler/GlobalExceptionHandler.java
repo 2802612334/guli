@@ -18,7 +18,6 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public Result error(Exception e){
         log.error(e.getMessage());
-        e.printStackTrace();
         return Result.error();
     }
 

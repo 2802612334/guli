@@ -23,4 +23,7 @@ public class VideoVO implements Serializable {
     @ApiModelProperty("小结名称")
     private String title;
 
+    @ApiModelProperty("小结排序")
+    private Integer sort;
+
 }

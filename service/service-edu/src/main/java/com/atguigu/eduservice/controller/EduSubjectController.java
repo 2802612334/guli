@@ -76,5 +76,21 @@ public class EduSubjectController {
 
         return Result.ok().data("items",data);
     }
+
+    @ApiOperation("根据父级id获取所有子分类")
+    @GetMapping("/by/parent/{id}")
+    public Result getSubjectByParentId(@ApiParam(name = "父级分类id",required = true) @PathVariable("id") String parentId){
+        List<TwoSubject> data = new ArrayList<>();
+        QueryWrapper<EduSubject> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("parent_id",parentId);
+        List<EduSubject> list = eduSubjectService.list(queryWrapper);
+        for (EduSubject eduSubject : list) {
+            TwoSubject twoSubject = new TwoSubject();
+            BeanUtils.copyProperties(eduSubject,twoSubject);
+            data.add(twoSubject);
+        }
+
+        return Result.ok().data("items",data);
+    }
 }
 

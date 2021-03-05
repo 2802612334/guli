@@ -1,5 +1,6 @@
 package com.atguigu.eduservice.entity.vo;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -21,6 +22,9 @@ public class ChapterVO implements Serializable {
 
     @ApiModelProperty("章节名称")
     private String title;
+
+    @ApiModelProperty("章节排序")
+    private Integer sort;
 
     @ApiModelProperty("小结信息")
     private List<VideoVO> children = new ArrayList<>();
