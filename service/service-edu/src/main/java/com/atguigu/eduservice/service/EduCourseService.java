@@ -19,4 +19,6 @@ public interface EduCourseService extends IService<EduCourse> {
     String saveCourse(CourseInfoVO courseInfoVO);
 
     CourseInfoVO getCourseById(String courseId);
+
+    CourseInfoVO getReleaseCourse(String id);
 }

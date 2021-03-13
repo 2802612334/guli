@@ -56,5 +56,12 @@ public class EduCourseController {
         eduCourseService.updateCourse(courseInfoVO);
         return Result.ok();
     }
+
+    @ApiOperation("课程发布页面回显")
+    @GetMapping("/release/{id}")
+    public Result getReleaseCourse(@ApiParam(name = "id",value = "课程id")@PathVariable("id") String id){
+        CourseInfoVO courseInfoVO = eduCourseService.getReleaseCourse(id);
+        return Result.ok().data("courseInfo",courseInfoVO);
+    }
 }
 

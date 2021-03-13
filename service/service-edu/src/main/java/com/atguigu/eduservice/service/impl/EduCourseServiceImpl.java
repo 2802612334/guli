@@ -81,4 +81,10 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
 
         return courseInfoVO;
     }
+
+    @Override
+    public CourseInfoVO getReleaseCourse(String id) {
+        CourseInfoVO courseInfoVO = this.baseMapper.selectReleaseCourse(id);
+        return courseInfoVO;
+    }
 }

@@ -19,6 +19,7 @@ mybatis-plus:
     db-config:
       logic-delete-value: 1                       # 表示已经删除
       logic-not-delete-value: 0                   # 表示未删除
+  mapper-locations: classpath:com/atguigu/eduservice/mapper/xml/*.xml
 ---
 spring:
   profiles: dev

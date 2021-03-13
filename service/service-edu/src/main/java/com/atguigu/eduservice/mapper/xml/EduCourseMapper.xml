@@ -2,11 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.atguigu.eduservice.mapper.EduCourseMapper">
 
-    <select id="">
+    <select id="selectReleaseCourse" resultType="com.atguigu.eduservice.entity.vo.CourseInfoVO">
         SELECT
-            course.title,
-            course.price,
-            description.description,
+            course.title title,
+            course.price price,
+            course.lesson_num lessonNum,
+            course.cover cover,
+            description.description description,
             s1.title oneSubject,
             s2.title twoSubject,
             teacher.`name` teacherName
