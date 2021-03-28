@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TwoSubject implements Serializable {
+public class TwoSubjectVO implements Serializable {
     @ApiModelProperty("二级分类id")
     private String id;
 

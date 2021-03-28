@@ -72,7 +72,7 @@ public class EduTeacherController {
     @ApiOperation("新增讲师")
     @PostMapping
     public Result save(
-            @ApiParam(name = "teacher",value = "讲师对象",required = true) @RequestBody(required = true) EduTeacher eduTeacher
+            @ApiParam(name = "eduTeacher",value = "讲师对象",required = true) @RequestBody(required = true) EduTeacher eduTeacher
     ){
         eduTeacherService.save(eduTeacher);
         return Result.ok();

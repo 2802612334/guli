@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class OneSubject implements Serializable {
+public class OneSubjectVO implements Serializable {
 
     @ApiModelProperty("一级分类id")
     private String id;
@@ -23,5 +23,5 @@ public class OneSubject implements Serializable {
     private String title;
 
     @ApiModelProperty("二级子列表")
-    private List<TwoSubject> children = new ArrayList<>();
+    private List<TwoSubjectVO> children = new ArrayList<>();
 }

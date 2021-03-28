@@ -27,7 +27,7 @@ public class EduLoginController {
         Map<String,Object> map = new HashMap<>();
         map.put("roles","[admin]");
         map.put("name","admin");
-        map.put("avatar","https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fa3.att.hudong.com%2F92%2F04%2F01000000000000119090475560392.jpg&refer=http%3A%2F%2Fa3.att.hudong.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1616139770&t=2c28199bcc7e97c48275003200c29f3c");
+        map.put("avatar","https://guliedu-szf.oss-cn-beijing.aliyuncs.com/2021/03/02/fbef69aa0a594bfab0f0b14f6a366d19.jpg");
         return Result.ok().data(map);
     }
 }

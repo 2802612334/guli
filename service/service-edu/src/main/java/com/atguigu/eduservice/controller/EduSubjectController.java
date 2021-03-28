@@ -2,12 +2,11 @@ package com.atguigu.eduservice.controller;
 
 import com.atguigu.commonutils.Result;
 import com.atguigu.eduservice.entity.po.EduSubject;
-import com.atguigu.eduservice.entity.vo.OneSubject;
-import com.atguigu.eduservice.entity.vo.TwoSubject;
+import com.atguigu.eduservice.entity.vo.OneSubjectVO;
+import com.atguigu.eduservice.entity.vo.TwoSubjectVO;
 import com.atguigu.eduservice.service.EduSubjectService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.BeanUtils;
@@ -52,13 +51,13 @@ public class EduSubjectController {
     public Result getSubjectTree(){
         // 1.获取所有课程列表
         List<EduSubject> subjectList = eduSubjectService.list(null);
-        Map<String,OneSubject> subjectMap = new HashMap<>();
-        List<OneSubject> data = new ArrayList<>();
+        Map<String, OneSubjectVO> subjectMap = new HashMap<>();
+        List<OneSubjectVO> data = new ArrayList<>();
 
         // 2.封装所有的一级分类
         for (EduSubject eduSubject : subjectList) {
             if(eduSubject.getParentId().equals("0")){
-                OneSubject oneSubject = new OneSubject();
+                OneSubjectVO oneSubject = new OneSubjectVO();
                 BeanUtils.copyProperties(eduSubject,oneSubject);
                 data.add(oneSubject);
                 subjectMap.put(oneSubject.getId(),oneSubject);
@@ -68,7 +67,7 @@ public class EduSubjectController {
         // 3.在所有的一级分类下添加二级子分类
         for (EduSubject eduSubject : subjectList) {
             if(!eduSubject.getParentId().equals("0")){
-                TwoSubject twoSubject = new TwoSubject();
+                TwoSubjectVO twoSubject = new TwoSubjectVO();
                 BeanUtils.copyProperties(eduSubject,twoSubject);
                 subjectMap.get(eduSubject.getParentId()).getChildren().add(twoSubject);
             }
@@ -80,12 +79,12 @@ public class EduSubjectController {
     @ApiOperation("根据父级id获取所有子分类")
     @GetMapping("/by/parent/{id}")
     public Result getSubjectByParentId(@ApiParam(name = "父级分类id",required = true) @PathVariable("id") String parentId){
-        List<TwoSubject> data = new ArrayList<>();
+        List<TwoSubjectVO> data = new ArrayList<>();
         QueryWrapper<EduSubject> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("parent_id",parentId);
         List<EduSubject> list = eduSubjectService.list(queryWrapper);
         for (EduSubject eduSubject : list) {
-            TwoSubject twoSubject = new TwoSubject();
+            TwoSubjectVO twoSubject = new TwoSubjectVO();
             BeanUtils.copyProperties(eduSubject,twoSubject);
             data.add(twoSubject);
         }

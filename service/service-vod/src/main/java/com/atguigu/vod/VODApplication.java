@@ -1,4 +1,4 @@
-package com.atguigu.oss;
+package com.atguigu.vod;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,11 +6,11 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ComponentScan;
 
-@EnableDiscoveryClient
 @ComponentScan("com.atguigu")
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
-public class OSSApplication {
+@EnableDiscoveryClient
+public class VODApplication {
     public static void main(String[] args) {
-        SpringApplication.run(OSSApplication.class,args);
+        SpringApplication.run(VODApplication.class);
     }
 }

@@ -3,13 +3,9 @@ package com.atguigu.eduservice.controller;
 
 import com.atguigu.commonutils.Result;
 import com.atguigu.eduservice.entity.po.EduChapter;
-import com.atguigu.eduservice.entity.po.EduSubject;
 import com.atguigu.eduservice.entity.po.EduVideo;
 import com.atguigu.eduservice.entity.vo.ChapterVO;
-import com.atguigu.eduservice.entity.vo.OneSubject;
-import com.atguigu.eduservice.entity.vo.TwoSubject;
 import com.atguigu.eduservice.entity.vo.VideoVO;
-import com.atguigu.eduservice.mapper.EduChapterMapper;
 import com.atguigu.eduservice.service.EduChapterService;
 import com.atguigu.eduservice.service.EduVideoService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;

@@ -28,7 +28,7 @@ public class SwaggerConfig {
             "0.0.1-SNAPSHOT",                                                   // 版本
             "http://localhost:8001/swagger-ui.html",                    // 组织链接
             contact,                                                                    // 联系人信息
-            "Apach 2.0 许可",                                                    // 许可
+            "Apache 2.0 许可",                                                    // 许可
             "许可链接",                                                        // 许可链接
             new ArrayList<>()
     );

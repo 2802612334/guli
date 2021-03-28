@@ -2,12 +2,17 @@ package com.atguigu.eduservice.service.impl;
 
 import com.atguigu.eduservice.entity.po.EduCourse;
 import com.atguigu.eduservice.entity.po.EduCourseDescription;
+import com.atguigu.eduservice.entity.po.EduTeacher;
 import com.atguigu.eduservice.entity.vo.CourseInfoVO;
+import com.atguigu.eduservice.entity.vo.CourseQueryVO;
 import com.atguigu.eduservice.mapper.EduCourseMapper;
 import com.atguigu.eduservice.service.EduCourseDescriptionService;
 import com.atguigu.eduservice.service.EduCourseService;
 import com.atguigu.exception.GuliException;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,5 +91,37 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
     public CourseInfoVO getReleaseCourse(String id) {
         CourseInfoVO courseInfoVO = this.baseMapper.selectReleaseCourse(id);
         return courseInfoVO;
+    }
+
+    @Override
+    public IPage<EduCourse> queryPage(Page<EduCourse> pageParam, CourseQueryVO courseQueryVO) {
+        if(courseQueryVO == null){
+            courseQueryVO = new CourseQueryVO();
+        }
+        String title = courseQueryVO.getTitle();
+        String subjectParentId = courseQueryVO.getSubjectParentId();
+        String subjectId = courseQueryVO.getSubjectId();
+        String teacherId = courseQueryVO.getTeacherId();
+
+        // 1.封装查询对象
+        QueryWrapper<EduCourse> queryWrapper = new QueryWrapper<>();
+
+        if(title != null && !title.isEmpty()){
+            queryWrapper.like("title",title);
+        }
+        if(subjectParentId != null && !subjectParentId.isEmpty()){
+            queryWrapper.eq("subject_parent_id",courseQueryVO.getSubjectParentId());
+        }
+        if(subjectId != null && !subjectId.isEmpty()){
+            queryWrapper.eq("subject_id",subjectId);
+        }
+        if(teacherId != null && !teacherId.isEmpty()){
+            queryWrapper.eq("teacher_id",teacherId);
+        }
+        // 按照更新时间，创建时间降序排列
+        queryWrapper.orderByDesc("gmt_modified","gmt_create");
+        // 2.执行查询
+        IPage<EduCourse> page = this.baseMapper.selectPage(pageParam, queryWrapper);
+        return page;
     }
 }

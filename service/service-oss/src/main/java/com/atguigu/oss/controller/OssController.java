@@ -2,6 +2,7 @@ package com.atguigu.oss.controller;
 
 import com.atguigu.commonutils.Result;
 import com.atguigu.oss.service.OssService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @author szf
  * @since 2021-02-20
  */
+@Api("OSS对象上传")
 @CrossOrigin
 @RestController
 @RequestMapping("/eduoss/upload")

@@ -26,4 +26,7 @@ public class VideoVO implements Serializable {
     @ApiModelProperty("小结排序")
     private Integer sort;
 
+    @ApiModelProperty(value = "是否可以试听：0收费 1免费")
+    private Boolean isFree;
+
 }
