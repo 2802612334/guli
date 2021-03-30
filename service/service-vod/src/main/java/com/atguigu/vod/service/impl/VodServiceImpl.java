@@ -3,14 +3,22 @@ package com.atguigu.vod.service.impl;
 import com.aliyun.vod.upload.impl.UploadVideoImpl;
 import com.aliyun.vod.upload.req.UploadStreamRequest;
 import com.aliyun.vod.upload.resp.UploadStreamResponse;
+import com.aliyuncs.DefaultAcsClient;
+import com.aliyuncs.exceptions.ClientException;
+import com.aliyuncs.vod.model.v20170321.DeleteVideoRequest;
+import com.aliyuncs.vod.model.v20170321.DeleteVideoResponse;
 import com.atguigu.exception.GuliException;
 import com.atguigu.vod.service.VodService;
+import com.atguigu.vod.util.AliyunVodSDKUtils;
 import com.atguigu.vod.util.VodProperties;
+import com.mysql.cj.util.TimeUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @Service
@@ -43,5 +51,25 @@ public class VodServiceImpl implements VodService {
             log.error("ErrorMessage=" + response.getMessage() + "\n");
         }
         return videoId;
+    }
+
+    @Override
+    public void removeVideo(List<String> videoSourceIds) {
+        DefaultAcsClient client = AliyunVodSDKUtils.initVodClient(VodProperties.KEYID,VodProperties.KEYSECRET,VodProperties.REGIONID);
+        DeleteVideoRequest request = new DeleteVideoRequest();
+
+        StringBuffer stringBuffer = new StringBuffer();
+        //支持传入多个视频ID，多个用逗号分隔
+        for (String videoSourceId : videoSourceIds) {
+            stringBuffer.append(videoSourceId + ",");
+        }
+        stringBuffer.substring(0, stringBuffer.length() - 1);
+        request.setVideoIds(stringBuffer.toString());
+
+        try {
+            DeleteVideoResponse acsResponse = client.getAcsResponse(request);
+        } catch (ClientException e) {
+            throw new GuliException(20001,e.getMessage());
+        }
     }
 }
