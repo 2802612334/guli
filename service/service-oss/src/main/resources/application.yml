@@ -8,7 +8,22 @@ spring:
 aliyun:
   oss:
     file:
-      endopint: endopint
-      keyid: keyid
-      keysecret: keysecret
-      bucketname: bucketname
+      endopint: oss-cn-beijing.aliyuncs.com
+      keyid: LTAI4G2U75AJFL4aeSAvSRwb
+      keysecret: MkzIawfHi9SWjhykgXclydvJmMlddS
+      bucketname: guliedu-szf
+
+eureka:
+  client:
+    # 表示将自己注册经EurekaServer
+    register-with-eureka: true
+    # 是否从EurekaServer上抓取已有的注册信息，默认为true,集群时必须设置为true
+    fetch-registry: true
+    service-url:
+      # 同时将服务注册到注册中心集群中
+      defaultZone: http://localhost:8000/eureka
+  instance:
+    # 服务在注册中心的主机名
+    instance-id: service-oss:8002
+    # 访问路径显示IP地址
+    prefer-ip-address: true

@@ -88,5 +88,12 @@ public class EduCourseController {
 
         return result;
     }
+
+    @ApiOperation("删除课程信息")
+    @DeleteMapping("/{id}")
+    public Result removeById(@ApiParam(name = "id",value = "课程id")@PathVariable("id") String id){
+        eduCourseService.removeCourse(id);
+        return Result.ok();
+    }
 }
 

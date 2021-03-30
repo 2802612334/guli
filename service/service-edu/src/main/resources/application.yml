@@ -20,6 +20,39 @@ mybatis-plus:
       logic-delete-value: 1                       # 表示已经删除
       logic-not-delete-value: 0                   # 表示未删除
   mapper-locations: classpath:com/atguigu/eduservice/mapper/xml/*.xml
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8000/eureka
+  instance:
+    instance-id: service-edu:8001
+    prefer-ip-address: true
+
+# ribbon超时时间
+ribbon:
+  # 指的是建立连接所用的时间，适用于网络状况正常的情况下，两端连接所用的时间
+  ReadTimeout: 5000
+  # 指的是建立连接后从服务器读取到可用资源所用的时间
+  ConnectTimeout: 5000
+
+feign:
+  hystrix:
+    enabled: true
+
+hystrix:
+  command:
+    default:
+      circuitBreaker:
+        errorThresholdPercentage: 60
+        sleepWindowInMilliseconds: 6
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
 ---
 spring:
   profiles: dev

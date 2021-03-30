@@ -27,4 +27,6 @@ public interface EduCourseService extends IService<EduCourse> {
     CourseInfoVO getReleaseCourse(String id);
 
     IPage<EduCourse> queryPage(Page<EduCourse> pageParam, CourseQueryVO courseQueryVO);
+
+    void removeCourse(String id);
 }

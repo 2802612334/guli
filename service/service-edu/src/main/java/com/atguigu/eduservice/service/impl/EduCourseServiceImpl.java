@@ -1,13 +1,15 @@
 package com.atguigu.eduservice.service.impl;
 
-import com.atguigu.eduservice.entity.po.EduCourse;
-import com.atguigu.eduservice.entity.po.EduCourseDescription;
-import com.atguigu.eduservice.entity.po.EduTeacher;
+import com.atguigu.commonutils.Result;
+import com.atguigu.eduservice.client.VodFeignClient;
+import com.atguigu.eduservice.entity.po.*;
 import com.atguigu.eduservice.entity.vo.CourseInfoVO;
 import com.atguigu.eduservice.entity.vo.CourseQueryVO;
 import com.atguigu.eduservice.mapper.EduCourseMapper;
+import com.atguigu.eduservice.service.EduChapterService;
 import com.atguigu.eduservice.service.EduCourseDescriptionService;
 import com.atguigu.eduservice.service.EduCourseService;
+import com.atguigu.eduservice.service.EduVideoService;
 import com.atguigu.exception.GuliException;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -16,7 +18,11 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p>
@@ -31,6 +37,16 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
 
     @Autowired
     private EduCourseDescriptionService eduCourseDescriptionService;
+
+    @Autowired
+    private EduChapterService eduChapterService;
+
+    @Autowired
+    private EduVideoService eduVideoService;
+
+    @Autowired
+//    @Qualifier(value = "vodFeignClient")
+    private VodFeignClient vodFeignClient;
 
     @Override
     public void updateCourse(CourseInfoVO courseInfoVO) {
@@ -123,5 +139,31 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         // 2.执行查询
         IPage<EduCourse> page = this.baseMapper.selectPage(pageParam, queryWrapper);
         return page;
+    }
+
+    @Override
+    public void removeCourse(String id) {
+        // 1.根据课程id物理删除该课程下所有章节信息
+        QueryWrapper<EduChapter> chapterQueryWrapper = new QueryWrapper<>();
+        chapterQueryWrapper.eq("course_id",id);
+        eduChapterService.remove(chapterQueryWrapper);
+        // 2.查询该课程下所有小结视频信息
+        QueryWrapper<EduVideo> videoQueryWrapper = new QueryWrapper<>();
+        videoQueryWrapper.eq("course_id",id);
+        List<EduVideo> eduVideos = eduVideoService.list(videoQueryWrapper);
+
+        List<String> videoSourceIds = new ArrayList<>();
+        for (EduVideo eduVideo : eduVideos) {
+            String videoSourceId = eduVideo.getVideoSourceId();
+            videoSourceIds.add(videoSourceId);
+        }
+        Result result = vodFeignClient.removeVideo(videoSourceIds);
+        if(result.getCode() == 20001){
+            throw new GuliException(20001,result.getMessage());
+        }
+        // 3.删除所有小结信息
+        eduVideoService.remove(videoQueryWrapper);
+        // 4.删除课程信息
+        this.baseMapper.deleteById(id);
     }
 }

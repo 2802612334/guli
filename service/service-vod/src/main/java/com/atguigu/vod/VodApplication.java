@@ -9,8 +9,8 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan("com.atguigu")
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 @EnableDiscoveryClient
-public class VODApplication {
+public class VodApplication {
     public static void main(String[] args) {
-        SpringApplication.run(VODApplication.class);
+        SpringApplication.run(VodApplication.class);
     }
 }
