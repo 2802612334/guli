@@ -3,6 +3,8 @@ package com.atguigu.eduservice.mapper;
 import com.atguigu.eduservice.entity.po.EduTeacher;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
+import java.util.List;
+
 /**
  * <p>
  * 讲师 Mapper 接口
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface EduTeacherMapper extends BaseMapper<EduTeacher> {
 
+    List<EduTeacher> selectHotTeacher();
 }

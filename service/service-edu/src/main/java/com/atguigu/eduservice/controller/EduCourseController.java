@@ -3,10 +3,8 @@ package com.atguigu.eduservice.controller;
 
 import com.atguigu.commonutils.Result;
 import com.atguigu.eduservice.entity.po.EduCourse;
-import com.atguigu.eduservice.entity.po.EduTeacher;
 import com.atguigu.eduservice.entity.vo.CourseInfoVO;
 import com.atguigu.eduservice.entity.vo.CourseQueryVO;
-import com.atguigu.eduservice.entity.vo.TeacherQueryVO;
 import com.atguigu.eduservice.service.EduCourseService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;

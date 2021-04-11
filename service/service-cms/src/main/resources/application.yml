@@ -1,9 +1,9 @@
 server:
-  port: 8001
+  port: 8004
 
 spring:
   application:
-    name: service-edu
+    name: service-cms
   profiles:
     active: dev
   mvc:
@@ -13,8 +13,8 @@ spring:
     time-zone: GMT+8
 
 mybatis-plus:
-#  configuration:
-#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  #  configuration:
+  #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
     db-config:
       logic-delete-value: 1                       # 表示已经删除
@@ -28,7 +28,7 @@ eureka:
     service-url:
       defaultZone: http://localhost:8000/eureka
   instance:
-    instance-id: service-edu:8001
+    instance-id: service-cms:8004
     prefer-ip-address: true
 
 # ribbon超时时间
@@ -38,20 +38,6 @@ ribbon:
   # 指的是建立连接后从服务器读取到可用资源所用的时间
   ConnectTimeout: 5000
 
-feign:
-  hystrix:
-    enabled: true
-
-hystrix:
-  command:
-    default:
-      circuitBreaker:
-        errorThresholdPercentage: 60
-        sleepWindowInMilliseconds: 6
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 5000
 
 ---
 spring:

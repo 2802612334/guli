@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -62,5 +63,11 @@ public class EduTeacherServiceImpl extends ServiceImpl<EduTeacherMapper, EduTeac
         IPage<EduTeacher> info = baseMapper.selectPage(page,queryWrapper);
 
         return info;
+    }
+
+    @Override
+    public List<EduTeacher> getHotTeacher() {
+        List<EduTeacher> eduTeacherList = this.baseMapper.selectHotTeacher();
+        return eduTeacherList;
     }
 }

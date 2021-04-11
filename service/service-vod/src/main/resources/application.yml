@@ -32,3 +32,4 @@ aliyun:
     file:
       keyid: LTAI4G2U75AJFL4aeSAvSRwb
       keysecret: MkzIawfHi9SWjhykgXclydvJmMlddS
+      regionId: cn-shanghai

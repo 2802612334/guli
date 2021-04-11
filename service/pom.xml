@@ -16,6 +16,7 @@
         <module>service-oss</module>
         <module>service-vod</module>
         <module>service-eureka</module>
+        <module>service-cms</module>
     </modules>
     <dependencies>
 <!--        eureka-->
@@ -42,11 +43,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
-<!--&lt;!&ndash;        nacos&ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>-->
-<!--        </dependency>-->
 <!--        springboot web-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -1,7 +1,6 @@
 package com.atguigu.eduservice.service;
 
 import com.atguigu.eduservice.entity.po.EduCourse;
-import com.atguigu.eduservice.entity.po.EduTeacher;
 import com.atguigu.eduservice.entity.vo.CourseInfoVO;
 import com.atguigu.eduservice.entity.vo.CourseQueryVO;
 import com.baomidou.mybatisplus.core.metadata.IPage;
