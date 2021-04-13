@@ -17,6 +17,7 @@
         <module>service-vod</module>
         <module>service-eureka</module>
         <module>service-cms</module>
+        <module>service-ucenter</module>
     </modules>
     <dependencies>
 <!--        eureka-->

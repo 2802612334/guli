@@ -25,8 +25,8 @@ public class CodeGenerator {
 
         // 2.全局配置
         GlobalConfig config = new GlobalConfig();
-        String projectPath = System.getProperty("user.dir");
-//        projectPath = "D:/JavaIDE/code/guli-parent/service/service-cms";
+//        String projectPath = System.getProperty("user.dir");
+        String projectPath = "D:/JavaIDE/code/guli-parent/service/service-ucenter";
         config.setOutputDir(projectPath + "/src/main/java");
         config.setAuthor("szf");
         config.setOpen(false);
@@ -60,7 +60,7 @@ public class CodeGenerator {
 
         // 5.策略配置
         StrategyConfig strategy = new StrategyConfig();
-        strategy.setInclude("crm_banner");
+        strategy.setInclude("ucenter_member");
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         strategy.setEntityLombokModel(true);
