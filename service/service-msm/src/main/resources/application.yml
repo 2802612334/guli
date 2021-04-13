@@ -1,5 +1,5 @@
 server:
-  port: 8150
+  port: 8006
 
 spring:
   application:
@@ -11,15 +11,6 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss            # 响应结果日期格式转换
     time-zone: GMT+8
-
-mybatis-plus:
-  #  configuration:
-  #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-  global-config:
-    db-config:
-      logic-delete-value: 1                       # 表示已经删除
-      logic-not-delete-value: 0                   # 表示未删除
-  mapper-locations: classpath:com/atguigu/eduservice/mapper/xml/*.xml
 
 eureka:
   client:
@@ -38,12 +29,6 @@ ribbon:
   # 指的是建立连接后从服务器读取到可用资源所用的时间
   ConnectTimeout: 5000
 
-# 微信登录
-wx:
-  open:
-    app_id: wxed9954c01bb89b47
-    app_secret: a7482517235173ddb4083788de60b90e
-    redirect_url: http://guli.shop/api/ucenter/wx/callback
 ---
 spring:
   profiles: dev
