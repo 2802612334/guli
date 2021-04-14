@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashMap;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,7 +27,7 @@ public class VxUserInfoDTO {
     private String headimgurl;
 
     // 用户特权信息
-    private String privilege;
+    private HashMap privilege;
 
     private String unionid;
 }

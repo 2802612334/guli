@@ -28,6 +28,7 @@ public class EduIndexServiceImpl implements EduIndexService {
     @Override
     @Cacheable(
             cacheNames = "indexHot",
+            key = "indexHotData",
             unless = "#result == null"      // 当result为null，则不会进行缓存
     )
     public Map<String, Object> getIndexHot() {

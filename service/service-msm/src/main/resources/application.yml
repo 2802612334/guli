@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: service-ucenter
+    name: service-msm
   profiles:
     active: dev
   mvc:
@@ -19,7 +19,7 @@ eureka:
     service-url:
       defaultZone: http://localhost:8000/eureka
   instance:
-    instance-id: service-edu:8001
+    instance-id: service-msm:8006
     prefer-ip-address: true
 
 # ribbon超时时间
@@ -31,19 +31,6 @@ ribbon:
 
 ---
 spring:
-  profiles: dev
-  datasource:
-    url: jdbc:mysql://localhost:3306/guli?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=GMT%2B8
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: root
-    hikari:
-      connection-init-sql: SELECT 1
-      connection-timeout: 60000
-      idle-timeout: 500000
-      max-lifetime: 540000
-      maximum-pool-size: 12
-      minimum-idle: 10
   redis:
     host: 192.168.24.128
     port: 6379

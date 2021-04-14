@@ -15,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -83,9 +82,7 @@ public class WxApiController {
                     "grant_type=authorization_code";
 
             baseUrl = String.format(baseUrl, VxOpenProperties.APP_ID,VxOpenProperties.APP_SECRET,code);
-
             String result = HttpClientUtils.get(baseUrl);
-
             Gson gson = new Gson();
             HashMap hashMap = gson.fromJson(result, HashMap.class);
 
@@ -106,12 +103,18 @@ public class WxApiController {
                 baseUrl = String.format(baseUrl,accessToken,openid);
                 result = HttpClientUtils.get(baseUrl);
                 VxUserInfoDTO vxUserInfoDTO = gson.fromJson(result, VxUserInfoDTO.class);
+                // 对微信昵称的乱码问题，进行处理
+                String nickname = vxUserInfoDTO.getNickname();
+                nickname = new String(nickname.getBytes("ISO-8859-1"),"UTF-8");
+                vxUserInfoDTO.setNickname(nickname);
+                // 去除头像路径中的转义字符
                 vxUserInfoDTO.setHeadimgurl(vxUserInfoDTO.getHeadimgurl().replaceAll("\\\\",""));
-
-                BeanUtils.copyProperties(vxUserInfoDTO,member);
+                // 6.将微信登录信息封装到PO对象中
+                member = new UcenterMember();
                 member.setAvatar(vxUserInfoDTO.getHeadimgurl());
+                BeanUtils.copyProperties(vxUserInfoDTO,member);
 
-                // 6.将用户信息保存到数据库
+                // 7.将用户信息保存到数据库
                 ucenterMemberService.save(member);
             }
 

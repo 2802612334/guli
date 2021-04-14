@@ -53,7 +53,7 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
         if(!MD5.encrypt(password).equals(ucenterMember.getPassword())){
             throw new GuliException(20001,"输入密码错误！");
         }
-        if(ucenterMember.getIsDisabled() == false){
+        if(ucenterMember.getIsDisabled()){
             throw new GuliException(20001,"用户已被禁用！");
         }
         // 4.使用jwt生成token字符串
@@ -71,19 +71,21 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
         if(mobile.isEmpty() || nickname.isEmpty() || password.isEmpty() || code.isEmpty()){
             throw new GuliException(20001,"注册信息输入错误！");
         }
-        // 2.校验验证码
-        String realCode = (String)redisTemplate.opsForValue().get("");
+        // 2.对用户密码进行加密处理
+        registerVO.setPassword(MD5.encrypt(registerVO.getPassword()));
+        // 3.校验验证码
+        String realCode = (String)redisTemplate.opsForValue().get(mobile);
         if(!code.equals(realCode)){
             throw new GuliException(20001,"验证码输入错误！");
         }
-        // 3.校验是否具有相同的手机号
+        // 4.校验是否具有相同的手机号
         QueryWrapper<UcenterMember> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("mobile",mobile);
         Integer count = this.baseMapper.selectCount(queryWrapper);
         if(count > 0){
             throw new GuliException(20001,"该手机号已被注册！");
         }
-        // 4.将注册信息添加到数据库
+        // 5.将注册信息添加到数据库
         UcenterMember ucenterMember = new UcenterMember();
         BeanUtils.copyProperties(registerVO,ucenterMember);
         this.baseMapper.insert(ucenterMember);
