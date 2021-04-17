@@ -25,7 +25,7 @@ public class CrmBannerServiceImpl extends ServiceImpl<CrmBannerMapper, CrmBanner
     @Override
     @Cacheable(
             value = "banner",
-            key = "'selectFrontBanner'"
+            key = "selectFrontBanner"
     )
     public List<CrmBanner> selectFrontBanner(IPage<CrmBanner> page) {
         // 1.按id字段升序排列

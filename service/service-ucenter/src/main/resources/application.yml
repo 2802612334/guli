@@ -45,6 +45,8 @@ wx:
     app_secret: a7482517235173ddb4083788de60b90e
     redirect_url: http://guli.shop/api/ucenter/wx/callback
 #    redirect_url: http://r65kuk.natappfree.cc/api/ucenter/wx/callback
+  login:
+    front_url: http://localhost:3000/
 ---
 spring:
   profiles: dev

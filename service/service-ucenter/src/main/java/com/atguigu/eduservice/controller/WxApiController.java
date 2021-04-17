@@ -6,11 +6,13 @@ import com.atguigu.eduservice.service.UcenterMemberService;
 import com.atguigu.eduservice.util.HttpClientUtils;
 import com.atguigu.eduservice.util.VxOpenProperties;
 import com.atguigu.exception.GuliException;
+import com.atguigu.utils.JwtUtils;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.google.gson.Gson;
 import io.swagger.annotations.Api;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,6 +38,9 @@ public class WxApiController {
 
     @Autowired
     private UcenterMemberService ucenterMemberService;
+
+    @Value("${vx.login.front_url}")
+    private String frontUrl;
 
     @GetMapping("/login")
     public String vxLogin(){
@@ -118,7 +123,11 @@ public class WxApiController {
                 ucenterMemberService.save(member);
             }
 
-            return result;
+            // 8.将用户信息生成token字符串
+            String token = JwtUtils.getJwtToken(member.getId(), member.getNickname());
+
+            // 9.将token串返回到前端
+            return "redirect:" + frontUrl + "?token=" + token;
         }catch (Exception e){
             throw new GuliException(20001,e.getMessage());
         }
