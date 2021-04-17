@@ -30,6 +30,6 @@ eureka:
 aliyun:
   vod:
     file:
-      keyid: LTAI4G2U75AJFL4aeSAvSRwb
-      keysecret: MkzIawfHi9SWjhykgXclydvJmMlddS
+      keyid: keyid
+      keysecret: keysecret
       regionId: cn-shanghai

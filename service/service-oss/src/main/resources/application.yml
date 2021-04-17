@@ -9,8 +9,8 @@ aliyun:
   oss:
     file:
       endopint: oss-cn-beijing.aliyuncs.com
-      keyid: LTAI4G2U75AJFL4aeSAvSRwb
-      keysecret: MkzIawfHi9SWjhykgXclydvJmMlddS
+      keyid: keyid
+      keysecret: keysecret
       bucketname: guliedu-szf
 
 eureka:
