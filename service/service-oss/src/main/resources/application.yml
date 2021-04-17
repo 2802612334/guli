@@ -8,10 +8,10 @@ spring:
 aliyun:
   oss:
     file:
-      endopint: oss-cn-beijing.aliyuncs.com
+      endopint: endopint
       keyid: keyid
       keysecret: keysecret
-      bucketname: guliedu-szf
+      bucketname: bucketname
 
 eureka:
   client:
